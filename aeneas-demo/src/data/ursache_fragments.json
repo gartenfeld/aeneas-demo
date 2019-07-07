@@ -1,0 +1,54 @@
+{
+ "fragments": [
+  {
+   "begin": "0.000", 
+   "children": [], 
+   "end": "0.300", 
+   "id": "f000001", 
+   "language": "deu", 
+   "lines": [
+    "die"
+   ]
+  }, 
+  {
+   "begin": "0.320", 
+   "children": [], 
+   "end": "1.260", 
+   "id": "f000002", 
+   "language": "deu", 
+   "lines": [
+    "Ursache"
+   ]
+  }, 
+  {
+   "begin": "1.400", 
+   "children": [], 
+   "end": "1.720", 
+   "id": "f000003", 
+   "language": "deu", 
+   "lines": [
+    "ist"
+   ]
+  }, 
+  {
+   "begin": "1.760", 
+   "children": [], 
+   "end": "2.060", 
+   "id": "f000004", 
+   "language": "deu", 
+   "lines": [
+    "noch"
+   ]
+  }, 
+  {
+   "begin": "2.100", 
+   "children": [], 
+   "end": "2.760", 
+   "id": "f000005", 
+   "language": "deu", 
+   "lines": [
+    "unklar"
+   ]
+  }
+ ]
+}
