@@ -23,12 +23,14 @@ class AudioPlayer extends React.Component {
     this.player = WaveSurfer.create({
       container: this.props.container,
       progressColor: 'DeepPink',
-      cursorColor: 'transparent'
+      cursorColor: 'transparent',
+      barWidth: 1,
     });
     this.player.load(this.props.audioSource);
   }
 
   render() {
+    const { fragments } = this.props;
     return (
       <div className="utterance" lang="de">
         <div
@@ -37,8 +39,8 @@ class AudioPlayer extends React.Component {
         >
           <span className='button-label'> ▶ </span>
         </div>
-        {
-          this.props.fragments.map(fragment => {
+        { fragments ?
+          fragments.map(fragment => {
             return (
               <div
                 className='button'
@@ -48,7 +50,7 @@ class AudioPlayer extends React.Component {
                 <span className='button-label'>{ fragment.lines[0] }</span>
               </div>
             );
-          })
+          }) : ''
         }
       </div>
     );

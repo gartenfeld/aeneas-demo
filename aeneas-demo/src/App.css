@@ -11,6 +11,7 @@
   cursor: pointer;
   display: inline-block;
   margin-right: 12px;
+  margin-top: 12px;
 }
 
 .play-all {
@@ -18,7 +19,13 @@
   border-color: #3399ff;
 }
 
+.record-button {
+  color: crimson;
+  border-color: crimson;
+}
+
 .surfer-waveform {
   /*display: none;*/
-  max-width: 800px;
+  margin-left: 40px;
+  max-width: 380px;
 }

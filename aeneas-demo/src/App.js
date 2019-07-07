@@ -8,13 +8,26 @@ import originalFragments from './data/ursache_fragments.json'
 function App() {
   return (
     <div className="App">
-      <AudioPlayer
-        container={'#original'}
-        audioSource={originalAudio}
-        fragments={originalFragments.fragments}
-      >
-      </AudioPlayer>
-      <div id="original" className="surfer-waveform"></div>
+      <div className="original-recording">
+        <AudioPlayer
+          container={'#original-waves'}
+          audioSource={originalAudio}
+          fragments={originalFragments.fragments}
+        >
+        </AudioPlayer>
+        <div id="original-waves" className="surfer-waveform"></div>
+      </div>
+      <div className="record-button button">
+        <span className="button-label">Record</span>
+      </div>
+      <div className="user-recording">
+        <AudioPlayer
+          container={'#user-waves'}
+          audioSource={originalAudio}
+        >
+        </AudioPlayer>
+        <div id="user-waves" className="surfer-waveform"></div>
+      </div>
     </div>
   );
 }
