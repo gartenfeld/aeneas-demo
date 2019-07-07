@@ -1,0 +1,1 @@
+python -m aeneas.tools.execute_task audio/ursache.wav audio/ursache_transcript.txt 'task_language=deu|is_text_type=plain|os_task_file_format=json|task_adjust_boundary_nonspeech_min=0.100|task_adjust_boundary_nonspeech_string=REMOVE' ursache_fragments.json

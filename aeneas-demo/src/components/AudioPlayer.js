@@ -13,6 +13,12 @@ class AudioPlayer extends React.Component {
     this.player.play(0);
   }
 
+  playFragment = (fragment) => {
+    let start = Number(fragment.begin);
+    let end =  Number(fragment.end)
+    this.player.play(start, end);
+  }
+
   componentDidMount() {
     this.player = WaveSurfer.create({
       container: this.props.container,
@@ -31,6 +37,19 @@ class AudioPlayer extends React.Component {
         >
           <span className='button-label'> ▶ </span>
         </div>
+        {
+          this.props.fragments.map(fragment => {
+            return (
+              <div
+                className='button'
+                key={fragment.id}
+                onClick={() => this.playFragment(fragment)}
+              >
+                <span className='button-label'>{ fragment.lines[0] }</span>
+              </div>
+            );
+          })
+        }
       </div>
     );
   }
