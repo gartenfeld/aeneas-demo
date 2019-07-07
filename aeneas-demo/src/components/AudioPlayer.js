@@ -6,12 +6,18 @@ class AudioPlayer extends React.Component {
   constructor() {
     super();
     this.state = {};
+    this.player = {};
+  }
+
+  playTrack() {
+    this.player.play(0);
   }
 
   componentDidMount() {
-    console.log(this.props)
     this.player = WaveSurfer.create({
-      container: this.props.container
+      container: this.props.container,
+      progressColor: 'DeepPink',
+      cursorColor: 'transparent'
     });
     this.player.load(this.props.audioSource);
   }
@@ -19,6 +25,12 @@ class AudioPlayer extends React.Component {
   render() {
     return (
       <div className="utterance" lang="de">
+        <div
+          className='play-all button'
+          onClick={() => this.playTrack()}
+        >
+          <span className='button-label'> ▶ </span>
+        </div>
       </div>
     );
   }
