@@ -1,32 +1,27 @@
 import React from 'react';
-import WaveSurfer from 'wavesurfer.js';
 
 class AudioPlayer extends React.Component {
 
   constructor() {
     super();
     this.state = {};
-    this.player = {};
   }
 
   playTrack() {
-    this.player.play(0);
+    this.props.player.play(0);
   }
 
   playFragment = (fragment) => {
     let start = Number(fragment.begin);
     let end =  Number(fragment.end)
-    this.player.play(start, end);
+    this.props.player.play(start, end);
   }
 
-  componentDidMount() {
-    this.player = WaveSurfer.create({
-      container: this.props.container,
-      progressColor: 'DeepPink',
-      cursorColor: 'transparent',
-      barWidth: 1,
-    });
-    this.player.load(this.props.audioSource);
+  componentDidUpdate() {
+    const { player, audioSource } = this.props;
+    if (audioSource) {
+      player.load(audioSource);
+    }
   }
 
   render() {

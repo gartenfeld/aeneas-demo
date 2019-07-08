@@ -6,14 +6,15 @@ class Recorder extends React.Component {
     super();
     this.state = {
       recorder: {},
-      audioSrc: '',
+      // audioSrc: '',
       isRecording: false
     };
   }
 
   addAudioSrc = event => {
     const blob = URL.createObjectURL(event.data);
-    this.setState({ audioSrc: blob });
+    // this.setState({ audioSrc: blob });
+    this.props.player.load(blob);
   }
 
   getRecorder = () => {
@@ -48,13 +49,10 @@ class Recorder extends React.Component {
   }
 
   render() {
-    const { isRecording, audioSrc } = this.state;
+    const { isRecording } = this.state;
     const buttonLabel = isRecording ? 'Stop' : 'Record'
     return (
       <div>
-        <div>
-          <audio controls src={ audioSrc } />
-        </div>
         <div className="button record-button" onClick={ this.onClickButton }>
           <span className='button-label'>{ buttonLabel }</span>
         </div>
