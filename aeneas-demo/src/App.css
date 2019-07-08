@@ -14,6 +14,10 @@
   margin-top: 12px;
 }
 
+.button:active {
+  transform: translate(1px, 1px);
+}
+
 .play-all {
   color: #3399ff;
   border-color: #3399ff;
@@ -22,6 +26,10 @@
 .record-button {
   color: crimson;
   border-color: crimson;
+}
+
+.record-button:hover {
+  background: #ffeeee;
 }
 
 .surfer-waveform {

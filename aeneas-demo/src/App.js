@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import AudioPlayer from './components/AudioPlayer';
+import Recorder from './components/Recorder';
 
 import originalAudio from './data/audio/ursache.wav';
 import originalFragments from './data/ursache_fragments.json'
@@ -17,9 +18,7 @@ function App() {
         </AudioPlayer>
         <div id="original-waves" className="surfer-waveform"></div>
       </div>
-      <div className="record-button button">
-        <span className="button-label">Record</span>
-      </div>
+      <Recorder></Recorder>
       <div className="user-recording">
         <AudioPlayer
           container={'#user-waves'}
