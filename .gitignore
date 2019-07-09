@@ -1,4 +1,5 @@
-/aeneas-server/data
+aeneas-server/data/*
+!/aeneas-server/data/original
 
 # Logs
 logs
