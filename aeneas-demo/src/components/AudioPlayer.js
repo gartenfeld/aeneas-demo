@@ -27,7 +27,7 @@ class AudioPlayer extends React.Component {
   render() {
     const { fragments } = this.props;
     return (
-      <div className="utterance" lang="de">
+      <div className='utterance' lang='de'>
         <div
           className='play-all button'
           onClick={() => this.playTrack()}
@@ -36,13 +36,22 @@ class AudioPlayer extends React.Component {
         </div>
         { fragments ?
           fragments.map(fragment => {
+            const score = parseInt(fragment.score, 10).toFixed(0);
+            const hue = 120 - Math.min(120, score);
+            const colour = `hsl(${hue}, 70%, 70%)`;
             return (
               <div
                 className='button'
                 key={fragment.id}
                 onClick={() => this.playFragment(fragment)}
+                style={{ backgroundColor: colour }}
               >
                 <span className='button-label'>{ fragment.lines[0] }</span>
+                {
+                  fragment.score ? (
+                    <span className='score'>{ score }</span>
+                  ) : ''
+                }
               </div>
             );
           }) : ''

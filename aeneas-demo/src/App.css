@@ -37,3 +37,17 @@
   margin-left: 40px;
   max-width: 380px;
 }
+
+.score {
+  font-family: monospace;
+  color: #777;
+  position: relative;
+  margin-left: 9px;
+  margin-right: -12px;
+  font-size: 10px;
+  font-weight: bold;
+  vertical-align: 2px;
+  background: white;
+  padding: 11px 7px 11px 7px;
+  border-radius: 0 8px 8px 0;
+}
