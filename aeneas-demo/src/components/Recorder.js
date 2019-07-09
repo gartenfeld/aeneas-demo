@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from '../utils/axios';
 
 class Recorder extends React.Component {
 
@@ -11,10 +12,27 @@ class Recorder extends React.Component {
     };
   }
 
+  postData = blob => {
+    const data = new FormData();
+    const timestamp = Date.now() + '';
+    data.append('audioBlob', blob, timestamp);
+    const params = {
+      headers: {
+        'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+      }
+    }
+    return axios.post('upload/', data, params);
+  }
+
   addAudioSrc = event => {
-    const blob = URL.createObjectURL(event.data);
+    // const blob = URL.createObjectURL(event.data);
     // this.setState({ audioSrc: blob });
-    this.props.player.load(blob);
+    // this.props.player.load(blob);
+    this.postData(event.data).then(response => {
+      const baseName = response.data.id;
+      const url = 'http://localhost:3030/static/' + baseName + '.wav'
+      this.props.player.load(url);
+    })
   }
 
   getRecorder = () => {
