@@ -3,8 +3,10 @@ import WaveSurfer from 'wavesurfer.js';
 import AudioPlayer from './AudioPlayer';
 import Recorder from './Recorder';
 
-import originalAudio from '../data/audio/ursache.wav';
+// import originalAudio from '../data/audio/ursache.wav';
 import originalFragments from '../data/ursache_fragments.json'
+
+const originalFromServer = 'http://localhost:3030/static/original/ursache.wav';
 
 class Connector extends React.Component {
 
@@ -39,7 +41,7 @@ class Connector extends React.Component {
         <div className="original-recording">
           <AudioPlayer
             player={this.state.originalPlayer}
-            audioSource={originalAudio}
+            audioSource={originalFromServer}
             fragments={originalFragments.fragments}
           >
           </AudioPlayer>
