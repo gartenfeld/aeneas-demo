@@ -14,8 +14,13 @@ class Connector extends React.Component {
     super();
     this.state = {
       originalPlayer: {},
-      learnerPlayer: {}
+      learnerPlayer: {},
+      userFragments: null
     };
+  }
+
+  updateFragments = (fragments) => {
+    this.setState({ userFragments: fragments });
   }
 
   componentDidMount() {
@@ -47,10 +52,11 @@ class Connector extends React.Component {
           </AudioPlayer>
           <div id="original-waves" className="surfer-waveform"></div>
         </div>
-        <Recorder player={this.state.learnerPlayer}></Recorder>
+        <Recorder player={this.state.learnerPlayer} updateFragments={this.updateFragments}></Recorder>
         <div className="user-recording">
           <AudioPlayer
             player={this.state.learnerPlayer}
+            fragments={this.state.userFragments}
           >
           </AudioPlayer>
           <div id="learner-waves" className="surfer-waveform"></div>

@@ -30,8 +30,9 @@ class Recorder extends React.Component {
     // this.props.player.load(blob);
     this.postData(event.data).then(response => {
       const baseName = response.data.id;
-      const url = 'http://localhost:3030/static/' + baseName + '.wav'
+      const url = 'http://localhost:3030/static/' + baseName + '.mp3'
       this.props.player.load(url);
+      this.props.updateFragments(response.data.fragments);
     })
   }
 

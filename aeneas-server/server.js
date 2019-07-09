@@ -5,6 +5,8 @@ const multer = require('multer');
 const upload = multer();
 const app = express();
 
+const shell = require('shelljs');
+
 app.use(cors());
 
 const SERVER_PORT = 3030;
@@ -13,16 +15,28 @@ app.use('/static', express.static('data'));
 
 app.post('/upload', upload.single('audioBlob'), (req, res) => {
   const timestamp = req.file.originalname;
-  const outputLocation = __dirname +
-    '/data/' + timestamp + '.wav';
+  const audioFilePath = `${__dirname}/data/${timestamp}.wav`;
 
   fs.writeFileSync(
-    outputLocation,
+    audioFilePath,
     Buffer.from(new Uint8Array(req.file.buffer))
   );
 
-  return res.json({ id: timestamp });
+  const transcriptPath = `${__dirname}/data/original/transcript.txt`;
+  const mp3Path = `${__dirname}/data/${timestamp}.mp3`
+  const jsonPath = `${__dirname}/data/${timestamp}.json`
 
+  const cmdOpusToMp3 = `ffmpeg -loglevel panic -i ${audioFilePath} -ss 0.040 -af silenceremove=1:0:-48dB -vn -ar 44100 -ac 2 -b:a 128k ${mp3Path}`
+  shell.exec(cmdOpusToMp3);
+
+  const cmdAeneas = `python -m aeneas.tools.execute_task ${mp3Path} ${transcriptPath} 'task_language=deu|is_text_type=plain|os_task_file_format=json|task_adjust_boundary_nonspeech_min=0.100|task_adjust_boundary_nonspeech_string=REMOVE' ${jsonPath}`
+  shell.exec(cmdAeneas);
+
+  const results = JSON.parse(fs.readFileSync(jsonPath));
+  results.id = timestamp;
+
+  console.log(`Processed in ${Date.now()-Number(timestamp)} ms`)
+  return res.json(results);
 });
 
 app.listen(SERVER_PORT);
